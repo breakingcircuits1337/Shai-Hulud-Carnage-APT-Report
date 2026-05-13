@@ -43,6 +43,13 @@ The account `agwagwagwa` forked the repo 17 hours before public disclosure with 
 | Bun runtime dropper (bash variant) | `screenshots/Screenshot_20260513_070340.png` |
 | Obfuscated build output | `screenshots/Screenshot_20260513_070400.png` |
 
+### Timeline Evidence
+
+| Evidence | Screenshot |
+|----------|-----------|
+| Worm receipt timestamp (04:20 UTC) | `screenshots/start4am051326.png` |
+| Reversal complete timestamp (10:35 UTC) | `screenshots/10-30051326.png` |
+
 ### HackerOne Disclosure — Rejected "Informative"
 
 HackerOne dismissed the deadman switch disclosure as "Informative" — declining to classify deliberate host-wipe-on-token-revoke as a valid vulnerability. The tone of the response is captured below:
@@ -96,7 +103,7 @@ The timeline from worm discovery to origin attribution was **dramatically compre
 | Remediation script authoring | 1-2 days | ~30 min | ~30x |
 
 **Total traditional timeline:** ~14-21 days  
-**Actual timeline:** <24 hours from initial indicator to public disclosure
+**Actual timeline:** ~6 hours from worm receipt to full reversal (04:20–10:35 UTC)
 
 This repo and its complete evidence package are the output of that AI-accelerated workflow.
 
@@ -205,8 +212,10 @@ Shai-Hulud-Carnage-APT-Report/
 ├── Threat Intelligence.md       ← Full threat intel & defense report
 ├── infected-repos.txt           ← 40+ repos referencing Shai-Hulud IOCs
 ├── forks.txt                    ← 63 forked accounts with commit forensics
-├── screenshots/                 ← 27 evidence screenshots
+├── screenshots/                 ← 29 evidence screenshots
 │   ├── Screenshot_20260513_060837.png
+│   ├── start4am051326.png
+│   ├── 10-30051326.png
 │   ├── ...
 │   ├── Screenshot_20260513_190310.png
 │   └── hackerone-dead-top-center-rude.png
@@ -226,17 +235,19 @@ Shai-Hulud-Carnage-APT-Report/
 |------|-----------|-------|
 | 2026-05-12 | 17:13 | agwagwagwa fork created (FreeBSD/OpenBSD false-flag commit) |
 | 2026-05-12 | 23:33 | GLP23 fork created (README edit, then TeamPCP commits) |
-| 2026-05-13 | ~01:00 | Initial identification of `gh-token-monitor` persistence mechanism |
-| 2026-05-13 | ~02:30 | Deadman switch logic reverse-engineered (`rm -rf ~/` on token revoke) |
-| 2026-05-13 | ~04:00 | NPM token exfiltration + Sigstore forgery pipeline identified |
-| 2026-05-13 | ~05:00 | AWS credential harvester (17-region loop) discovered |
-| 2026-05-13 | ~06:00 | AI-assisted YARA rules + remediation script complete |
-| 2026-05-13 | 06:08 | First forensic screenshots captured |
-| 2026-05-13 | ~08:00 | C2 domain `git-tanstack.com` correlated; fork network mapped |
-| 2026-05-13 | ~09:00 | HackerOne report submitted |
-| 2026-05-13 | ~10:00 | GitHub Security Disclosure submitted via HackerOne |
+| 2026-05-13 | 04:20 | Worm sample received; initial triage begins |
+| 2026-05-13 | 04:45 | `gh-token-monitor` persistence mechanism identified |
+| 2026-05-13 | 05:15 | Deadman switch logic reverse-engineered (`rm -rf ~/` on token revoke) |
+| 2026-05-13 | 06:00 | NPM token exfiltration + Sigstore forgery pipeline identified |
+| 2026-05-13 | 06:30 | AWS credential harvester (17-region loop) discovered |
+| 2026-05-13 | 07:00 | AI-assisted YARA rules + remediation script complete |
+| 2026-05-13 | 07:30 | First forensic screenshots captured |
+| 2026-05-13 | 08:00 | C2 domain `git-tanstack.com` correlated; fork network mapped |
+| 2026-05-13 | 09:00 | HackerOne report submitted |
+| 2026-05-13 | 10:00 | GitHub Security Disclosure submitted via HackerOne |
+| 2026-05-13 | 10:35 | Worm fully reversed; evidence packaged; end of active RE |
 | 2026-05-13 | ~14:00 | HackerOne response: **Informative** — not a platform vulnerability |
-| 2026-05-13 | 19:03 | Final screenshots captured; repo packaged |
+| 2026-05-13 | 19:03 | Supplementary screenshots captured |
 | 2026-05-13 | 19:26 | Public disclosure — this repo published |
 
 ---
