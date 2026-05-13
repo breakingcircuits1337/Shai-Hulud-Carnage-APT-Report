@@ -1,7 +1,7 @@
 # Shai-Hulud / Carnage APT — Incident Worm Disclosure (IWD) 2026 -AI Use case -Cyber Defense- (speedrun)
 
 **Date:** 2026-05-13  
-**Researcher:** breakingcircuit (breakingcircuits.com(BDE.IT.COM)(BCautomation.online))
+**Researcher:** breakingcircuit (breakingcircuits.com(BDE.IT.COM)(BCautomations.online))
 **Repo:** `breakingcircuits1337/Shai-Hulud-Carnage-APT-Report`  
 **Status:** Public Disclosure — CVE-pending / GHSA-pending
 
