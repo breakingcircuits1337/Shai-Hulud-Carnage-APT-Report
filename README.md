@@ -7,7 +7,11 @@
 
 ---
 
-> **GitHub Trust & Safety Response:** Marked as **"Informative"** — acknowledging the worm's deadman switch design (token revocation triggers `rm -rf ~/`) but declining to treat the mechanism as a GitHub Platform vulnerability. The attacker-controlled repos (`PedroTortoriello/Shai-Hulud-Open-Source`, `g00dfe11ow/Shai-Hulud-Open-Source`) remain active at time of disclosure.
+<p align="center">
+  <img src="screenshots/hackerone-dead-top-center-rude.png" alt="HackerOne dismissal: Informative">
+</p>
+
+**HackerOne / GitHub Trust & Safety Response:** Marked as **"Informative"** — declining to classify deliberate host-wipe-on-token-revoke as a valid vulnerability. The attacker-controlled repos (`PedroTortoriello/Shai-Hulud-Open-Source`, `g00dfe11ow/Shai-Hulud-Open-Source`) remain active at time of disclosure.
 
 ---
 
