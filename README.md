@@ -1,4 +1,4 @@
-# Shai-Hulud / Carnage APT — Incident Worm Disclosure (IWD) 2026
+# Shai-Hulud / Carnage APT — Incident Worm Disclosure (IWD) 2026 -AI Used In investigation (speedrun)
 
 **Date:** 2026-05-13  
 **Researcher:** breakingcircuit ([breakingcircuits.com](https://breakingcircuits.com))  
