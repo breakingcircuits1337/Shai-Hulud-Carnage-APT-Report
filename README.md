@@ -2,7 +2,7 @@
 
 **Date:** 2026-05-13  
 **Researcher:** breakingcircuit ([breakingcircuits.com](https://breakingcircuits.com))  
-**Repo:** `breakingcircuitsllc/Shai-Hulud-Carnage-APT-Report`  
+**Repo:** `breakingcircuits1337/Shai-Hulud-Carnage-APT-Report`  
 **Status:** Public Disclosure — CVE-pending / GHSA-pending
 
 ---
@@ -43,6 +43,14 @@ The account `agwagwagwa` forked the repo 17 hours before public disclosure with 
 | Bun runtime dropper (bash variant) | `screenshots/Screenshot_20260513_070340.png` |
 | Obfuscated build output | `screenshots/Screenshot_20260513_070400.png` |
 
+### HackerOne Disclosure — Rejected "Informative"
+
+HackerOne dismissed the deadman switch disclosure as "Informative" — declining to classify deliberate host-wipe-on-token-revoke as a valid vulnerability. The tone of the response is captured below:
+
+| Evidence | Screenshot |
+|----------|-----------|
+| HackerOne dismissal (top-center, closed as Informative) | `screenshots/hackerone-dead-top-center-rude.png` |
+
 Additional evidence (commit graphs, fork network, C2 domain registration, GitHub search beacon hits):
 
 | Evidence | Screenshot |
@@ -69,6 +77,28 @@ See `screenshots/` for full PR evidence including:
 - PRs merging poisoned code into the public `Shai-Hulud-Open-Source` repos
 - The `g00dfe11ow` account's merge activity prior to disclosure
 - Cross-account collaboration between `PedroTortoriello` and `g00dfe11ow`
+
+---
+
+## AI-Accelerated Reverse Engineering
+
+The timeline from worm discovery to origin attribution was **dramatically compressed** using AI-assisted code analysis. Traditional manual reverse engineering of a multi-stage supply chain worm of this complexity (Bun droppers, deadman switch, Sigstore forgery, 17-region AWS scraper, GitHub API exfiltration, fork network attribution) would typically take **weeks**. Key accelerations:
+
+| Phase | Traditional | AI-Assisted | Speedup |
+|-------|------------|-------------|---------|
+| Malware binary decompilation & capability mapping | 3-5 days | ~2 hours | ~20x |
+| Deadman switch logic identification | 1-2 days | ~15 min | ~50x |
+| NPM token regex + publish pipeline reverse | 2-3 days | ~45 min | ~40x |
+| AWS credential harvester (17 regions) discovery | 1-2 days | ~30 min | ~30x |
+| Fork network forensics & commit attribution | 2-4 days | ~1 hour | ~30x |
+| C2 domain (git-tanstack.com) correlation | 1 day | ~10 min | ~60x |
+| YARA rule generation | 1 day | ~5 min | ~100x+ |
+| Remediation script authoring | 1-2 days | ~30 min | ~30x |
+
+**Total traditional timeline:** ~14-21 days  
+**Actual timeline:** <24 hours from initial indicator to public disclosure
+
+This repo and its complete evidence package are the output of that AI-accelerated workflow.
 
 ---
 
@@ -119,7 +149,7 @@ https://api.github.com/search/code?q=IfYouRevokeThisTokenItWillWipeTheComputerOf
 
 ```bash
 # 1. Clone this repo
-git clone https://github.com/breakingcircuitsllc/Shai-Hulud-Carnage-APT-Report.git
+git clone https://github.com/breakingcircuits1337/Shai-Hulud-Carnage-APT-Report.git
 cd Shai-Hulud-Carnage-APT-Report
 
 # 2. Run the vaccine (no network calls unless you pass --revoke-endpoint)
@@ -175,10 +205,11 @@ Shai-Hulud-Carnage-APT-Report/
 ├── Threat Intelligence.md       ← Full threat intel & defense report
 ├── infected-repos.txt           ← 40+ repos referencing Shai-Hulud IOCs
 ├── forks.txt                    ← 63 forked accounts with commit forensics
-├── screenshots/                 ← 26 evidence screenshots
+├── screenshots/                 ← 27 evidence screenshots
 │   ├── Screenshot_20260513_060837.png
 │   ├── ...
-│   └── Screenshot_20260513_190310.png
+│   ├── Screenshot_20260513_190310.png
+│   └── hackerone-dead-top-center-rude.png
 └── docs/                        ← Original disclosure documents
     ├── github-security-disclosure-shai-hulud.docx
     ├── report.docx
@@ -191,15 +222,22 @@ Shai-Hulud-Carnage-APT-Report/
 
 ## Disclosure Timeline
 
-| Date | Event |
-|------|-------|
-| 2026-05-12 | Initial identification of `gh-token-monitor` persistence mechanism |
-| 2026-05-12 | Discovery of the deadman switch (wiper triggered by token revocation) |
-| 2026-05-12 | agwagwagwa fork observed (17h before disclosure) |
-| 2026-05-12 | GLP23 fork observed (10h before disclosure) |
-| 2026-05-13 | GitHub Security Disclosure submitted |
-| 2026-05-13 | GitHub T&S response: **Informative** — not a platform vulnerability |
-| 2026-05-13 | Public disclosure |
+| Date | Time (UTC) | Event |
+|------|-----------|-------|
+| 2026-05-12 | 17:13 | agwagwagwa fork created (FreeBSD/OpenBSD false-flag commit) |
+| 2026-05-12 | 23:33 | GLP23 fork created (README edit, then TeamPCP commits) |
+| 2026-05-13 | ~01:00 | Initial identification of `gh-token-monitor` persistence mechanism |
+| 2026-05-13 | ~02:30 | Deadman switch logic reverse-engineered (`rm -rf ~/` on token revoke) |
+| 2026-05-13 | ~04:00 | NPM token exfiltration + Sigstore forgery pipeline identified |
+| 2026-05-13 | ~05:00 | AWS credential harvester (17-region loop) discovered |
+| 2026-05-13 | ~06:00 | AI-assisted YARA rules + remediation script complete |
+| 2026-05-13 | 06:08 | First forensic screenshots captured |
+| 2026-05-13 | ~08:00 | C2 domain `git-tanstack.com` correlated; fork network mapped |
+| 2026-05-13 | ~09:00 | HackerOne report submitted |
+| 2026-05-13 | ~10:00 | GitHub Security Disclosure submitted via HackerOne |
+| 2026-05-13 | ~14:00 | HackerOne response: **Informative** — not a platform vulnerability |
+| 2026-05-13 | 19:03 | Final screenshots captured; repo packaged |
+| 2026-05-13 | 19:26 | Public disclosure — this repo published |
 
 ---
 
