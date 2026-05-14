@@ -8,11 +8,13 @@
 
 A supply chain worm named **Shai-Hulud** (attribution: TeamPCP / Carnage APT) targets developer workstations, steals NPM + AWS credentials, backdoors the NPM registry with forged Sigstore provenance, and exfiltrates data to dynamically created GitHub repos. It has a **deadman switch**: a background daemon that polls `api.github.com/user` every 60 seconds. If you revoke the stolen token — standard IR 101 — it `rm -rf ~/` your home directory.
 
-I reported this to HackerOne / GitHub Trust & Safety.
+I took it to HackerOne because they have the reach — better avenues to get the word out than I do alone. I handed them everything: the vaccine script, surgery plans, threat reports, full IoCs, and a complete YARA rule set. Everything a platform needs to protect its users.
+
+The response was just kinda rude.
 
 They marked it **"Informative"**.
 
-The attacker repos are **still live**.
+The attacker repos are **still live** on GitHub as of this post.
 
 ---
 
@@ -58,21 +60,32 @@ Here's what this worm does, end to end:
 
 ## The Part That Should Upset You
 
-I submitted this to HackerOne as a coordinated disclosure.
+I submitted this to HackerOne as a coordinated disclosure — specifically because HackerOne has the distribution to actually protect people. I didn't hold anything back:
 
-The response: **"Informative"** — not a valid vulnerability.
+- **Vaccine script** — `shaihuld-remediate.sh`, production-ready
+- **Surgery plans** — Phase-by-phase IR playbook
+- **Threat reports** — Full intelligence package
+- **IoCs** — File, process, network, registry, the works
+- **YARA rule set** — 12 rules covering every stage of the kill chain
+
+Everything a platform needs to shield its userbase. Handed over on a silver platter.
+
+The response: **"Informative"** — not a valid vulnerability. And the tone of it was dismissive. Rude, even.
 
 A worm that:
 - Installs a daemon that watches your GitHub token
 - Has an explicitly coded wiper triggered by standard IR token rotation
 - Targets the developer supply chain end-to-end
+- Uses GitHub as its C2 channel, exfiltration target, AND distribution vector
 - Is still actively forked from live repos on the platform
 
 ...is "Informative."
 
 Meanwhile, the repos `PedroTortoriello/Shai-Hulud-Open-Source` and `g00dfe11ow/Shai-Hulud-Open-Source` are **still on GitHub** as of this post. Any developer who stumbles on them, runs the install script, and has their machine wiped when their org rotates the token — that's not a vulnerability. That's a feature.
 
-**To HackerOne and GitHub Trust & Safety:** I get that the mechanism isn't a GitHub platform bug in the strictest sense. But when your platform is the C2 channel, the exfiltration target, and the distribution vector — and the attacker's entire OPSEC relies on your API — "Informative" is a miss. A deadman switch that punishes security best practices deserves a coordinated takedown, not a shrug.
+**To HackerOne:** I came to you because you have the megaphone. I brought the full toolkit. The response was dismissive, and that's disappointing. You had a chance to lead on developer supply chain safety, and you passed.
+
+**To GitHub Trust & Safety:** Your platform is the C2 channel, the exfiltration target, and the distribution vector — the attacker's entire OPSEC relies on your API continuing to serve their payloads. A deadman switch that punishes standard IR deserves coordinated action, not a procedural shrug. Take the repos down.
 
 ---
 
