@@ -3,7 +3,7 @@
 **Date:** 2026-05-13  
 **Researcher:** breakingcircuit (breakingcircuits.com(BDE.IT.COM)(BCautomations.online))
 **Repo:** `breakingcircuits1337/Shai-Hulud-Carnage-APT-Report`  
-**Status:** Public Disclosure — CVE-pending / GHSA-pending
+**Status:** Public Disclosure — [CVE-2026-45321](https://www.cve.org/CVERecord?id=CVE-2026-45321) / [GHSA-g7cv-rxg3-hmpx](https://github.com/TanStack/router/security/advisories/GHSA-g7cv-rxg3-hmpx) (CVSS 9.6 — Critical)
 
 ---
 
