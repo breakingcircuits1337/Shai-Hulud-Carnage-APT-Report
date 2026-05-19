@@ -1,4 +1,12 @@
 Threat Intelligence & Defense Report: Shai-Hulud / Carnage
+
+CVE Assignment: CVE-2026-45321 / GHSA-g7cv-rxg3-hmpx
+CVSS Score: 9.6 (Critical) — CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H
+Published: 2026-05-11 | Disclosed: 2026-05-13
+References: https://www.cve.org/CVERecord?id=CVE-2026-45321
+            https://github.com/TanStack/router/security/advisories/GHSA-g7cv-rxg3-hmpx
+            https://nvd.nist.gov/vuln/detail/CVE-2026-45321
+
 Executive Summary
 
 The "Shai-Hulud" malware toolkit, operated by a threat actor identifying as "TeamPCP", is a highly sophisticated supply chain and credential harvesting worm designed to target developer environments. Its primary objectives are to harvest NPM and cloud infrastructure credentials, automatically publish poisoned packages to the NPM registry, and exfiltrate stolen data via dynamically created GitHub repositories. Most critically, the malware employs an active "Deadman Switch" designed to wipe the host system if incident responders attempt to revoke compromised GitHub tokens without first neutralizing the persistence mechanism.
